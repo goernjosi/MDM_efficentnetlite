@@ -12,11 +12,12 @@ import base64
 app = Flask(__name__,
             static_url_path='/', 
             static_folder='web')
-
-ort_session = onnxruntime.InferenceSession("efficientnet-lite4-11.onnx")
+model_path = "C:\\Users\\goern_y\\Studium\\MDM\\SW7 Efficentnetlite\\mdm-efficientnet-lite4-onnx\\efficientnet-lite4-11-qdq.onnx"
+ort_session = onnxruntime.InferenceSession(model_path)
 
 # load the labels text file
-labels = json.load(open("labels_map.txt", "r"))
+labels_path = "C:\\Users\\goern_y\\Studium\\MDM\\SW7 Efficentnetlite\\mdm-efficientnet-lite4-onnx\\labels_map.txt"
+labels = json.load(open(labels_path, "r"))
 
 # set image file dimensions to 224x224 by resizing and cropping image from center
 def pre_process_edgetpu(img, dims):
